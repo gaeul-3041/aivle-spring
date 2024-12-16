@@ -24,4 +24,8 @@ public class Product {
     private int price;
 
     private String description;
+
+    @OneToMany(mappedBy = "product")
+    @JsonManagedReference
+    private List<ProductOption> options;
 }
