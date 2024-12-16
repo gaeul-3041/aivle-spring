@@ -32,7 +32,7 @@ public class NewsController {
     public String createNews(NewsDto.Post post) {
         News news = mapper.newsPostDtoToNews(post);
         newsRepository.save(news);
-        return "redirect:/news/list";
+        return "redirect:/news/" + news.getNewsId();
     }
 
     @GetMapping("/{newsId}")
