@@ -12,8 +12,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
-
 @Controller
 @RequiredArgsConstructor
 @RequestMapping("/news")
@@ -54,5 +52,13 @@ public class NewsController {
         model.addAttribute("hasPrev", newsPage.hasPrevious());
 
         return "news/list";
+
+        // 페이지 번호별 버튼은 일단 패스
+    }
+
+    @GetMapping("/{newsId}/delete")
+    public String deleteNews(@PathVariable("newsId") Long newsId) {
+        newsRepository.deleteById(newsId);
+        return "redirect:/news/list";
     }
 }
