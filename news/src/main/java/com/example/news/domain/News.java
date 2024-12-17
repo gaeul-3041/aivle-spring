@@ -7,6 +7,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.List;
+
 @Entity
 @Getter
 @Setter
@@ -24,7 +26,10 @@ public class News {
     @Column(nullable = false)
     private String content;
 
-    public static News toEntity(NewsDto.Post post) {
-        return new News(null, post.getTitle(), post.getContent());
-    }
+    @OneToMany(mappedBy = "news")
+    private List<Comment> comments;
+
+//    public static News toEntity(NewsDto.Post post) {
+//        return new News(null, post.getTitle(), post.getContent());
+//    }
 }
